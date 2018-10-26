@@ -79,8 +79,6 @@ class UserPageFragment : BasePageFragment() {
         list.addAll(DummyDataProvider.users.sortedBy { it.sortName })
 
         list.add(0, DummyDataProvider.getAdvertisment(1))
-        list.add(6, DummyDataProvider.getAdvertisment(2))
-        list.add(12, DummyDataProvider.getAdvertisment(3))
         return list
     }
 
