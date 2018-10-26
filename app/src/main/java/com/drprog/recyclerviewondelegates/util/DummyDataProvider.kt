@@ -37,12 +37,28 @@ object DummyDataProvider {
                 User("Ryan Dotson"),
                 User("Zachary Benjamin"),
                 User("Connor Merrill"),
-                User(" Jeremy Alford"),
+                User("Jeremy Alford"),
                 User("Demetrius Hodge"),
                 User("Troy Ware"),
                 User("Jared Villarreal"),
                 User("Slade Romero"),
-                User("Keane Franks")
+                User("Keane Franks"),
+                User("Tark Dicker"),
+                User("Helen Hart"),
+                User("Dart Wader"),
+                User("Lara Croft"),
+                User("Coll Lar"),
+                User("Finn ORelly"),
+                User("Quin Art"),
+                User("Risk Doter"),
+                User("Roman Weron"),
+                User("Wernon Dursl"),
+                User("Karl Dickens"),
+                User("Demet Hogel"),
+                User("Tris Mare"),
+                User("Jad Villarreal"),
+                User("Silvia Romero"),
+                User("Ker Nejasyt")
         )
 
     val locations: List<Location>
