@@ -3,7 +3,6 @@ package com.drprog.recyclerviewondelegates.util.binding
 import com.drprog.recyclerviewondelegates.model.BaseModel
 
 data class SimpleListItem<T>(var value: T? = null, val tag: String = TAG_DEFAULT) : BaseModel {
-    override val sortName: String = tag
 
     override var id = value?.hashCode()?.toLong() ?: tag.hashCode().toLong()
 

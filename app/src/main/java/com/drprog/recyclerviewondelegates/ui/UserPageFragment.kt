@@ -76,7 +76,7 @@ class UserPageFragment : BasePageFragment() {
 
     private fun getDummyData(): List<BaseModel> {
         var list = ArrayList<BaseModel>()
-        list.addAll(DummyDataProvider.users.sortedBy { it.sortName })
+        list.addAll(DummyDataProvider.users.sortedBy { it.name })
 
         list.add(0, DummyDataProvider.getAdvertisment(1))
         return list
