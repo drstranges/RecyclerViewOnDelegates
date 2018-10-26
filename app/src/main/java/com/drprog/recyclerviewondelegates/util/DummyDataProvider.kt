@@ -62,6 +62,6 @@ object DummyDataProvider {
         )
 
     fun getAdvertisment(index: Int): Advertisement {
-        return Advertisement("This is Advertisment #$index")
+        return Advertisement("$index This is Advertisment")
     }
 }

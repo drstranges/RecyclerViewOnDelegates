@@ -57,7 +57,7 @@ class AllInOnePageFragment : BasePageFragment() {
                     .with(R.layout.item_user)
                     .forClass(User::class.java)
                     .onBind { context, item, holder ->
-                        (holder as? ItemUserBinding)?.apply {
+                        (holder.binding as? ItemUserBinding)?.apply {
                             this.user = item as User
                             this.actionHandler = this@AllInOnePageFragment.actionHandler
                         }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/sticky_item_first_letter_width"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:background="@android:color/white"
+
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp">
+
+    <TextView
+        tools:visibility="visible"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAllCaps="true"
+        android:textColor="@color/styckyColor"
+        android:textSize="@dimen/sticky_item_user_first_letter_size"
+        tools:text="A"/>
+
+    <!--<ImageView-->
+        <!--android:visibility="visible"-->
+        <!--tools:visibility="visible"-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:scaleType="fitStart"-->
+        <!--tools:src="@drawable/ic_crown"-->
+        <!--tools:tint="@color/greenLightMore"/>-->
+</FrameLayout>

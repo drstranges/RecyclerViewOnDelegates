@@ -3,4 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="divider_size_default">2dp</dimen>
+    <dimen name="sticky_item_first_letter_width">40dp</dimen>
+    <dimen name="sticky_item_user_first_letter_size">24dp</dimen>
+    <dimen name="stickyOffset">72dp</dimen>
 </resources>

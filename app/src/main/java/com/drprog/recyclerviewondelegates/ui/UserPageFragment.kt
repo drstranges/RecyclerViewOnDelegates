@@ -16,6 +16,7 @@
 package com.drprog.recyclerviewondelegates.ui
 
 
+import android.graphics.Color
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.drextended.actionhandler.ActionHandler
@@ -25,13 +26,14 @@ import com.drprog.recyclerviewondelegates.delegate.AdvertisementDelegate
 import com.drprog.recyclerviewondelegates.delegate.UserDelegate
 import com.drprog.recyclerviewondelegates.model.ActionType
 import com.drprog.recyclerviewondelegates.model.BaseModel
-import com.drprog.recyclerviewondelegates.util.DividerItemDecoration
-import com.drprog.recyclerviewondelegates.util.DividerItemDecoration.Companion.SPACE_BOTTOM
 import com.drprog.recyclerviewondelegates.util.DummyDataProvider
+import com.drprog.recyclerviewondelegates.util.StickyUserFirstLetterDecorator
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import java.util.*
 
 class UserPageFragment : BasePageFragment() {
+
+    var letterDecorator: StickyUserFirstLetterDecorator? = null
 
     val actionHandler = ActionHandler.Builder()
             .addAction(ActionType.OPEN, ShowToastAction())
@@ -45,26 +47,37 @@ class UserPageFragment : BasePageFragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val divider = requireContext().resources.getDimensionPixelSize(R.dimen.divider_size_default)
-        recyclerView.addItemDecoration(DividerItemDecoration(divider, SPACE_BOTTOM))
+//        recyclerView.addItemDecoration(DividerItemDecoration(divider, SPACE_BOTTOM))
+        letterDecorator = StickyUserFirstLetterDecorator(
+                requireContext().resources.getDimensionPixelSize(R.dimen.stickyOffset),
+                divider,
+                Color.RED,
+                true
+        )
+        recyclerView.addItemDecoration(letterDecorator!!)
     }
 
     override fun createItemDelegates(): Array<AdapterDelegate<List<BaseModel>>> = arrayOf(
             UserDelegate(actionHandler),
             AdvertisementDelegate(actionHandler)
     )
+
     override fun onStart() {
         super.onStart()
         if (adapter.items == null) loadData()
     }
 
     private fun loadData() {
-        adapter.items = getDummyData()
+        var data = getDummyData()
+        adapter.items = data
+        letterDecorator?.notifyDataSetChanged(data)
         adapter.notifyDataSetChanged()
     }
 
     private fun getDummyData(): List<BaseModel> {
-        val list = ArrayList<BaseModel>()
-        list.addAll(DummyDataProvider.users)
+        var list = ArrayList<BaseModel>()
+        list.addAll(DummyDataProvider.users.sortedBy { it.sortName })
+
         list.add(0, DummyDataProvider.getAdvertisment(1))
         list.add(6, DummyDataProvider.getAdvertisment(2))
         list.add(12, DummyDataProvider.getAdvertisment(3))

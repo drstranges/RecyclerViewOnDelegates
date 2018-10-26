@@ -5,6 +5,7 @@ import com.drprog.recyclerviewondelegates.util.IdProvier
 
 interface BaseModel {
     val id: Long
+    val sortName: String
 }
 
 data class Advertisement(
@@ -12,6 +13,7 @@ data class Advertisement(
         override val id: Long = IdProvier.nextId()
 ) : BaseModel {
     val image = "http://loremflickr.com/300/100/sport?random=" + this.id
+    override val sortName = label
 }
 
 data class Location(
@@ -19,6 +21,7 @@ data class Location(
         override val id: Long = IdProvier.nextId()
 ) : BaseModel {
     val image = "http://loremflickr.com/100/100/" + name + "?random=" + this.id
+    override val sortName = name
 }
 
 data class User(
@@ -26,4 +29,5 @@ data class User(
         override val id: Long = IdProvier.nextId()
 ) : BaseModel {
     val avatar = "http://i.pravatar.cc/80?u=" + name.hashCode()
+    override val sortName = name
 }

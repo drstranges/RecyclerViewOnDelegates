@@ -24,16 +24,17 @@ import com.drprog.recyclerviewondelegates.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var mBinding: ActivityMainBinding? = null
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initViewPager()
     }
 
     private fun initViewPager() {
-        mBinding!!.viewPager.adapter = object : FragmentStatePagerAdapter(supportFragmentManager) {
+        binding.viewPager.offscreenPageLimit = 3
+        binding.viewPager.adapter = object : FragmentStatePagerAdapter(supportFragmentManager) {
 
             override fun getItem(position: Int) =
                     when (position) {
@@ -51,6 +52,6 @@ class MainActivity : AppCompatActivity() {
 
             override fun getCount() = 3
         }
-        mBinding!!.tabLayout.setupWithViewPager(mBinding!!.viewPager)
+        binding!!.tabLayout.setupWithViewPager(binding!!.viewPager)
     }
 }
