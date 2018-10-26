@@ -3,7 +3,6 @@ package com.drprog.recyclerviewondelegates.util
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
@@ -14,7 +13,6 @@ import android.widget.TextView
 import com.drprog.recyclerviewondelegates.R
 import com.drprog.recyclerviewondelegates.model.User
 import java.util.*
-import kotlin.collections.HashMap
 
 /**
  * Created by roman.donchenko on 23.06.2016.
@@ -55,35 +53,27 @@ class StickyUserFirstLetterDecorator(private val mStickyAreaWidth: Int) : Recycl
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
         val context = parent.context
-        val layoutManager =  (parent.layoutManager as? LinearLayoutManager) ?: return
-        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-        val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
-        var topOffset: Int
-        var bottomOffset: Int
-        for (stickyArea in areaIndex) {
-            topOffset = -1
-            bottomOffset = -1
-            if (stickyArea.startPos <= lastVisibleItemPosition && stickyArea.endPos >= firstVisibleItemPosition) {
-
-                for (j in 0 until parent.childCount) {
-                    val child = parent.getChildAt(j)
-                    val adapterPosition = parent.getChildAdapterPosition(child)
-                    if (stickyArea.startPos <= adapterPosition && stickyArea.endPos >= adapterPosition) {
-                        if (child.alpha == 0f) break // not visible yet
-                        if (topOffset == -1) {
-                            topOffset = Math.max(0, child.top + child.translationY.toInt())
-                        }
-                        bottomOffset = child.bottom + child.translationY.toInt()
-                    } else if (topOffset != -1) {
-                        break
-                    }
-                }
-                if (bottomOffset != -1) {
-                    drawStickyItem(c, context, parent, topOffset, bottomOffset, stickyArea)
-                }
-                if (stickyArea.endPos >= lastVisibleItemPosition) break
+        var j = 0
+        while (j < parent.childCount) {
+            val child = parent.getChildAt(j)
+            if (child.alpha == 0f) break // not visible yet
+            val adapterPosition = parent.getChildAdapterPosition(child)
+            val stickyArea = findStickyAreaForPosition(adapterPosition)
+            if (stickyArea != null) {
+                val topOffset = Math.max(0, child.top + child.translationY.toInt())
+                val endPosDiff = stickyArea.endPos - adapterPosition
+                j += endPosDiff
+                val endChildIndex = Math.min(j, parent.childCount - 1)
+                val viewForEnd = parent.getChildAt(endChildIndex)
+                val bottomOffset = viewForEnd.bottom + viewForEnd.translationY.toInt()
+                drawStickyItem(c, context, parent, topOffset, bottomOffset, stickyArea)
             }
+            j++
         }
+    }
+
+    private fun findStickyAreaForPosition(adapterPosition: Int): StickyArea? {
+        return areaIndex.firstOrNull{ it.startPos <= adapterPosition && it.endPos >= adapterPosition }
     }
 
     private fun drawStickyItem(c: Canvas, context: Context, parent: RecyclerView, topOffset: Int, bottomOffset: Int, stickyArea: StickyArea) {
