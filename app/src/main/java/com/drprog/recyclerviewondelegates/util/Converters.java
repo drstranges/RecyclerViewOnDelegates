@@ -47,7 +47,7 @@ public class Converters {
         boolean isEmptyPath = TextUtils.isEmpty(path);
         if (isEmptyPath) {
             if (placeholder != null) {
-//                imageView.setImageDrawable(placeholder);
+                imageView.setImageDrawable(placeholder);
             }
             return;
         }
@@ -57,10 +57,10 @@ public class Converters {
 
             if (placeholder != null) {
                 if (!crossFadeDisabled && animationResId == null) request.crossFade();
-//                request.placeholder(placeholder);
+                request.placeholder(placeholder);
             }
             if (animationResId != null) {
-//                request.animate(animationResId);
+                request.animate(animationResId);
             }
             if (glideTransform != null) {
                 switch (glideTransform) {

@@ -1,10 +1,10 @@
-package com.drprog.recyclerviewondelegates.delegate
+package com.drprog.recyclerviewondelegates.util.binding
 
 import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import com.drprog.recyclerviewondelegates.model.BaseModel
 
-import com.drprog.recyclerviewondelegates.util.BindingHolder
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 
 abstract class BaseBindingAdapterDelegate<T : List<*>, VB : ViewDataBinding> : AdapterDelegate<T>() {

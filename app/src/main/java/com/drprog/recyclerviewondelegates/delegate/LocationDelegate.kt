@@ -23,7 +23,8 @@ import com.drprog.recyclerviewondelegates.R
 import com.drprog.recyclerviewondelegates.databinding.ItemLocationBinding
 import com.drprog.recyclerviewondelegates.model.BaseModel
 import com.drprog.recyclerviewondelegates.model.Location
-import com.drprog.recyclerviewondelegates.util.BindingHolder
+import com.drprog.recyclerviewondelegates.util.binding.ActionAdapterDelegate
+import com.drprog.recyclerviewondelegates.util.binding.BindingHolder
 
 /**
  * Item Delegate to display Location item

@@ -21,14 +21,17 @@ import android.support.v7.widget.RecyclerView
 import com.drextended.actionhandler.ActionHandler
 import com.drprog.recyclerviewondelegates.R
 import com.drprog.recyclerviewondelegates.action.ShowToastAction
+import com.drprog.recyclerviewondelegates.databinding.ItemUserBinding
 import com.drprog.recyclerviewondelegates.delegate.AdvertisementDelegate
 import com.drprog.recyclerviewondelegates.delegate.LocationDelegate
 import com.drprog.recyclerviewondelegates.delegate.UserDelegate
 import com.drprog.recyclerviewondelegates.model.ActionType
 import com.drprog.recyclerviewondelegates.model.BaseModel
+import com.drprog.recyclerviewondelegates.model.User
 import com.drprog.recyclerviewondelegates.util.DividerItemDecoration
 import com.drprog.recyclerviewondelegates.util.DividerItemDecoration.Companion.SPACE_BOTTOM
 import com.drprog.recyclerviewondelegates.util.DummyDataProvider
+import com.drprog.recyclerviewondelegates.util.binding.SimpleAdapterDelegate
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import java.util.*
 
@@ -50,10 +53,21 @@ class AllInOnePageFragment : BasePageFragment() {
     }
 
     override fun createItemDelegates(): Array<AdapterDelegate<List<BaseModel>>> = arrayOf(
-            UserDelegate(actionHandler),
+            SimpleAdapterDelegate.builder<BaseModel>()
+                    .with(R.layout.item_user)
+                    .forClass(User::class.java)
+                    .onBind { context, item, holder ->
+                        (holder as? ItemUserBinding)?.apply {
+                            this.user = item as User
+                            this.actionHandler = this@AllInOnePageFragment.actionHandler
+                        }
+                    }
+                    .build(),
+//            UserDelegate(actionHandler),
             LocationDelegate(actionHandler),
             AdvertisementDelegate(actionHandler)
     )
+
     override fun onStart() {
         super.onStart()
         if (adapter.items == null) loadData()

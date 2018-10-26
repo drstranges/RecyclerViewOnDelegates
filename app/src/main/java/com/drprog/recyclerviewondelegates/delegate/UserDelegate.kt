@@ -22,7 +22,8 @@ import com.drprog.recyclerviewondelegates.R
 import com.drprog.recyclerviewondelegates.databinding.ItemUserBinding
 import com.drprog.recyclerviewondelegates.model.BaseModel
 import com.drprog.recyclerviewondelegates.model.User
-import com.drprog.recyclerviewondelegates.util.BindingHolder
+import com.drprog.recyclerviewondelegates.util.binding.ActionAdapterDelegate
+import com.drprog.recyclerviewondelegates.util.binding.BindingHolder
 
 /**
  * Item Delegate to display User item

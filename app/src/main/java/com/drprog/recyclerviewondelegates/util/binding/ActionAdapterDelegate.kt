@@ -1,4 +1,4 @@
-package com.drprog.recyclerviewondelegates.delegate
+package com.drprog.recyclerviewondelegates.util.binding
 
 import android.databinding.ViewDataBinding
 

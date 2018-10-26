@@ -23,7 +23,8 @@ import com.drprog.recyclerviewondelegates.R
 import com.drprog.recyclerviewondelegates.databinding.ItemAdvertismentBinding
 import com.drprog.recyclerviewondelegates.model.Advertisement
 import com.drprog.recyclerviewondelegates.model.BaseModel
-import com.drprog.recyclerviewondelegates.util.BindingHolder
+import com.drprog.recyclerviewondelegates.util.binding.ActionAdapterDelegate
+import com.drprog.recyclerviewondelegates.util.binding.BindingHolder
 
 /**
  * Item Delegate to display Advertisement item

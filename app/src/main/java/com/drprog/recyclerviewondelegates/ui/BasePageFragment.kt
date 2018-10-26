@@ -28,7 +28,7 @@ import android.view.ViewGroup
 import com.drprog.recyclerviewondelegates.R
 import com.drprog.recyclerviewondelegates.databinding.FragmentPageBinding
 import com.drprog.recyclerviewondelegates.model.BaseModel
-import com.drprog.recyclerviewondelegates.util.BindableAdapter
+import com.drprog.recyclerviewondelegates.util.binding.BindableAdapter
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 
 abstract class BasePageFragment : Fragment() {
