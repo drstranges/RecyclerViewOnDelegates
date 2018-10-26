@@ -2,7 +2,6 @@ package com.drprog.recyclerviewondelegates.util
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Paint
 import android.graphics.Rect
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -23,23 +22,16 @@ import java.util.ArrayList
 /**
  * Created by roman.donchenko on 23.06.2016.
  */
-class StickyUserFirstLetterDecorator(private val mLeftOffset: Int, dividerSize: Int, dividerColor: Int, private val mDrawTopDividerWide: Boolean) : RecyclerView.ItemDecoration() {
+class StickyUserFirstLetterDecorator(private val mLeftOffset: Int) : RecyclerView.ItemDecoration() {
 
     private val mOffsetIndex = SparseBooleanArray()
     private val mIndex = ArrayList<StickyArea>()
     private var mStickyViewHolder: StickyViewHolder? = null
-    private val mPaint: Paint = Paint()
 
     private class StickyArea {
         internal var letter: Char = 0.toChar()
         internal var startPos = 0
         internal var endPos = 0
-    }
-
-    init {
-        mPaint.color = dividerColor
-        mPaint.style = Paint.Style.STROKE
-        mPaint.strokeWidth = dividerSize.toFloat()
     }
 
     // Call it always
@@ -127,11 +119,6 @@ class StickyUserFirstLetterDecorator(private val mLeftOffset: Int, dividerSize: 
         c.save()
         c.translate(0f, top.toFloat())
         mStickyViewHolder!!.draw(c)
-        if (mDrawTopDividerWide && stickyArea === mIndex[0]) {
-            // first user item. draw long line
-            c.drawLine(0f, 0f, (parent.width - parent.paddingRight).toFloat(), 0f, mPaint)
-        } else
-            c.drawLine(mLeftOffset.toFloat(), 0f, (parent.width - parent.paddingRight).toFloat(), 0f, mPaint)
         c.restore()
     }
 

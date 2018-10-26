@@ -49,10 +49,7 @@ class UserPageFragment : BasePageFragment() {
         val divider = requireContext().resources.getDimensionPixelSize(R.dimen.divider_size_default)
 //        recyclerView.addItemDecoration(DividerItemDecoration(divider, SPACE_BOTTOM))
         letterDecorator = StickyUserFirstLetterDecorator(
-                requireContext().resources.getDimensionPixelSize(R.dimen.stickyOffset),
-                divider,
-                Color.RED,
-                true
+                requireContext().resources.getDimensionPixelSize(R.dimen.stickyOffset)
         )
         recyclerView.addItemDecoration(letterDecorator!!)
     }
