@@ -16,7 +16,6 @@
 package com.drprog.recyclerviewondelegates.ui
 
 
-import android.graphics.Color
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.drextended.actionhandler.ActionHandler
@@ -45,12 +44,10 @@ class UserPageFragment : BasePageFragment() {
 
     override fun onInitRecyclerView(recyclerView: RecyclerView) {
         recyclerView.adapter = adapter
+        recyclerView.hasFixedSize()
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val divider = requireContext().resources.getDimensionPixelSize(R.dimen.divider_size_default)
-//        recyclerView.addItemDecoration(DividerItemDecoration(divider, SPACE_BOTTOM))
-        letterDecorator = StickyUserFirstLetterDecorator(
-                requireContext().resources.getDimensionPixelSize(R.dimen.stickyOffset)
-        )
+        val stickyAreaWidth = requireContext().resources.getDimensionPixelSize(R.dimen.stickyOffset)
+        letterDecorator = StickyUserFirstLetterDecorator(stickyAreaWidth)
         recyclerView.addItemDecoration(letterDecorator!!)
     }
 
@@ -65,14 +62,14 @@ class UserPageFragment : BasePageFragment() {
     }
 
     private fun loadData() {
-        var data = getDummyData()
+        val data = getDummyData()
         adapter.items = data
         letterDecorator?.notifyDataSetChanged(data)
         adapter.notifyDataSetChanged()
     }
 
     private fun getDummyData(): List<BaseModel> {
-        var list = ArrayList<BaseModel>()
+        val list = ArrayList<BaseModel>()
         list.addAll(DummyDataProvider.users.sortedBy { it.name })
 
         list.add(0, DummyDataProvider.getAdvertisment(1))

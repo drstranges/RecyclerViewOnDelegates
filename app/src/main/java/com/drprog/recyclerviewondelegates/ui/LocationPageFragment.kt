@@ -34,7 +34,7 @@ import com.drprog.recyclerviewondelegates.util.DividerItemDecoration.Companion.S
 import com.drprog.recyclerviewondelegates.util.DividerItemDecoration.Companion.SPACE_TOP
 import com.drprog.recyclerviewondelegates.util.DummyDataProvider
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
-import java.util.ArrayList
+import java.util.*
 
 class LocationPageFragment : BasePageFragment() {
 
@@ -47,6 +47,7 @@ class LocationPageFragment : BasePageFragment() {
     }
 
     override fun onInitRecyclerView(recyclerView: RecyclerView) {
+        recyclerView.hasFixedSize()
         val layoutManager = GridLayoutManager(requireContext(), 2)
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {

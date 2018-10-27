@@ -39,6 +39,7 @@ abstract class BasePageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val delegates = createItemDelegates()
+        adapter.hasStableIds()
         adapter.setDelegates(delegates)
     }
 

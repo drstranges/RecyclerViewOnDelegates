@@ -24,7 +24,6 @@ import com.drprog.recyclerviewondelegates.action.ShowToastAction
 import com.drprog.recyclerviewondelegates.databinding.ItemUserBinding
 import com.drprog.recyclerviewondelegates.delegate.AdvertisementDelegate
 import com.drprog.recyclerviewondelegates.delegate.LocationDelegate
-import com.drprog.recyclerviewondelegates.delegate.UserDelegate
 import com.drprog.recyclerviewondelegates.model.ActionType
 import com.drprog.recyclerviewondelegates.model.BaseModel
 import com.drprog.recyclerviewondelegates.model.User
@@ -47,6 +46,7 @@ class AllInOnePageFragment : BasePageFragment() {
 
     override fun onInitRecyclerView(recyclerView: RecyclerView) {
         recyclerView.adapter = adapter
+        recyclerView.hasFixedSize()
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val divider = requireContext().resources.getDimensionPixelSize(R.dimen.divider_size_default)
         recyclerView.addItemDecoration(DividerItemDecoration(divider, SPACE_BOTTOM))
